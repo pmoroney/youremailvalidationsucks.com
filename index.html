@@ -1030,7 +1030,7 @@
               browsers intentionally use a much smaller, more maintainable rule than full RFC 5322 because full RFC 5322 is not a humane UX strategy.
             </p>
             <div class="warning-box" style="margin-top: 1rem;">
-              <strong>Be careful with the mythical “official RFC 5322 regex.”</strong>
+              <strong>Be careful with oversized “RFC 5322 compliant” regexes.</strong>
               <p>
                 The oversized pattern floating around the internet is hard to review, hard to maintain, and can introduce catastrophic backtracking
                 and ReDoS risk into your signup form. Smaller, reviewable rules are usually the safer choice.
@@ -1291,7 +1291,7 @@ EMAIL_RE = re.compile(
           statusEls.nativeMessage.textContent = 'Type an address to see whether the browser accepts it.';
           statusEls.regexMessage.textContent = 'Type an address to compare it with a pragmatic production regex.';
           statusEls.overall.textContent = 'Live';
-          statusEls.explanation.textContent = 'Empty input should not be treated as validated. Start typing.';
+          statusEls.explanation.textContent = 'Empty input should not be treated as validated. Start typing to compare the checks.';
           return;
         }
 
@@ -1300,7 +1300,7 @@ EMAIL_RE = re.compile(
           statusEls.nativeMessage.textContent = 'The browser accepts this shape as an email address.';
         } else {
           setStatus(statusEls.nativeBadge, 'Fail', 'fail');
-          statusEls.nativeMessage.textContent = 'The browser rejects this shape before your app logic even gets involved.';
+          statusEls.nativeMessage.textContent = 'The browser rejects this shape before your app-specific validation runs.';
         }
 
         if (regexPass) {
@@ -1319,10 +1319,10 @@ EMAIL_RE = re.compile(
           statusEls.explanation.textContent = 'HTML5 is intentionally forgiving. Your server may still want stricter dot and label rules.';
         } else if (!nativePass && regexPass) {
           statusEls.overall.textContent = 'Unexpected split';
-          statusEls.explanation.textContent = 'If this happens, compare browser behavior and business rules carefully before “fixing” the user.';
+          statusEls.explanation.textContent = 'If this happens, compare browser behavior and business rules carefully before changing your validation rules.';
         } else {
-          statusEls.overall.textContent = 'Broken';
-          statusEls.explanation.textContent = 'Reject the structure, explain the issue clearly, and do not pretend this was a TLD problem.';
+          statusEls.overall.textContent = 'Needs attention';
+          statusEls.explanation.textContent = 'Reject the structure, explain the issue clearly, and focus on the actual formatting problem.';
         }
       }
 
