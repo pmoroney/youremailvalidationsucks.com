@@ -167,7 +167,6 @@
     .snippet-grid,
     .callout-grid,
     .summary-grid,
-    .sandbox__details,
     .footer-grid {
       display: grid;
       gap: 1rem;
@@ -233,7 +232,6 @@
     }
 
     .button,
-    .chip,
     .copy-button {
       border: 1px solid transparent;
       border-radius: 999px;
@@ -245,10 +243,8 @@
     }
 
     .button:hover,
-    .chip:hover,
     .copy-button:hover,
     .button:focus-visible,
-    .chip:focus-visible,
     .copy-button:focus-visible {
       transform: translateY(-1px);
       outline: none;
@@ -261,17 +257,14 @@
     }
 
     .button--secondary,
-    .copy-button,
-    .chip {
+    .copy-button {
       background: var(--surface-strong);
       color: var(--text);
       border-color: var(--border);
     }
 
     .button--secondary:hover,
-    .copy-button:hover,
-    .chip:hover,
-    .chip.is-active {
+    .copy-button:hover {
       border-color: var(--accent);
       background: var(--accent-soft);
       color: var(--accent-strong);
@@ -279,12 +272,10 @@
 
     .hero__stats,
     .summary-card,
-    .panel,
     .callout,
     .layer,
     .snippet-card,
-    .timeline-card,
-    .mini-card {
+    .timeline-card {
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface-strong);
@@ -339,135 +330,6 @@
     .section__header p {
       max-width: 65ch;
       margin-bottom: 0;
-    }
-
-    .sandbox {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    }
-
-    .panel {
-      padding: 1rem;
-    }
-
-    .panel h3 {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 0.9rem;
-    }
-
-    .field-label {
-      display: block;
-      margin-bottom: 0.6rem;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .input-wrap {
-      display: flex;
-      gap: 0.75rem;
-      align-items: stretch;
-    }
-
-    .email-input {
-      width: 100%;
-      padding: 0.95rem 1rem;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      background: var(--surface-strong);
-      color: var(--text);
-      font: inherit;
-    }
-
-    .email-input:focus-visible {
-      outline: 2px solid var(--accent-soft);
-      border-color: var(--accent);
-    }
-
-    .hint {
-      margin-top: 0.65rem;
-      font-size: 0.95rem;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-top: 1rem;
-    }
-
-    .status-list {
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .status-row,
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 0.85rem 0.95rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: var(--surface-muted);
-    }
-
-    .status-row strong,
-    .detail-row strong {
-      color: var(--text);
-    }
-
-    .status-pill {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .status-pill.pass {
-      background: var(--success-soft);
-      color: var(--success);
-    }
-
-    .status-pill.fail {
-      background: var(--danger-soft);
-      color: var(--danger);
-    }
-
-    .status-pill.pending {
-      background: var(--warning-soft);
-      color: var(--warning);
-    }
-
-    .sandbox__details {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 1rem;
-    }
-
-    .mini-card {
-      padding: 0.9rem;
-    }
-
-    .mini-card p {
-      margin-top: 0.4rem;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .mini-card__value {
-      display: block;
-      margin-top: 0.35rem;
-      color: var(--text);
-      font-size: 1.5rem;
-      font-weight: 800;
     }
 
     .summary-grid,
@@ -698,7 +560,6 @@
 
     @media (max-width: 980px) {
       .hero__grid,
-      .sandbox,
       .history-grid,
       .standards-grid,
       .summary-grid,
@@ -709,9 +570,6 @@
         grid-template-columns: 1fr;
       }
 
-      .sandbox__details {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 640px) {
@@ -725,8 +583,6 @@
         border-radius: 22px;
       }
 
-      .input-wrap,
-      .panel h3,
       .snippet-card__head,
       .section__header {
         flex-direction: column;
@@ -734,8 +590,7 @@
       }
 
       .button,
-      .copy-button,
-      .chip {
+      .copy-button {
         width: 100%;
         justify-content: center;
       }
@@ -744,10 +599,6 @@
         flex-direction: column;
       }
 
-      .status-row,
-      .detail-row {
-        flex-direction: column;
-      }
     }
   </style>
 </head>
@@ -767,7 +618,7 @@
             where HTML5 helps, where regex stops, and what practical validation looks like in 2026.
           </p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#sandbox">Try the sandbox</a>
+            <a class="button button--primary" href="#summary-title">See common pitfalls</a>
             <a class="button button--secondary" href="#layers">Skip to the 4-layer model</a>
           </div>
         </div>
@@ -792,95 +643,6 @@
     </header>
 
     <main>
-      <section class="section" id="sandbox" aria-labelledby="sandbox-title">
-        <div class="section__header">
-          <div>
-            <span class="section__eyebrow">Interactive Email Sandbox</span>
-            <h2 id="sandbox-title">Paste an address and compare common validation approaches.</h2>
-          </div>
-          <p>
-            Native HTML5 validation is intentionally lightweight. The pragmatic regex below is stricter about obvious mistakes.
-            Neither one proves delivery. That comes later.
-          </p>
-        </div>
-
-        <div class="sandbox">
-          <article class="panel">
-            <label class="field-label" for="email-sandbox">Test email address</label>
-            <div class="input-wrap">
-              <input
-                class="email-input"
-                id="email-sandbox"
-                name="email-sandbox"
-                type="email"
-                inputmode="email"
-                autocomplete="email"
-                spellcheck="false"
-                value="alex@startup.dev"
-                aria-describedby="email-hint"
-              >
-            </div>
-            <p class="hint" id="email-hint">
-              Presets include valid newer gTLDs, plus-addressing, subdomains, and one obviously broken local part.
-            </p>
-            <div class="chips" role="group" aria-label="Preset email addresses">
-              <button class="chip is-active" type="button" data-email="alex@startup.dev">alex@startup.dev</button>
-              <button class="chip" type="button" data-email="user+tag@domain.email">user+tag@domain.email</button>
-              <button class="chip" type="button" data-email="test@sub.engineer">test@sub.engineer</button>
-              <button class="chip" type="button" data-email="me@company.photography">me@company.photography</button>
-              <button class="chip" type="button" data-email="broken..dot@bad.com">broken..dot@bad.com</button>
-            </div>
-
-            <div class="sandbox__details" aria-label="Address breakdown">
-              <article class="mini-card">
-                <strong>Local part</strong>
-                <span class="mini-card__value" id="local-length">0</span>
-                <p id="local-meta">Waiting for input.</p>
-              </article>
-              <article class="mini-card">
-                <strong>Domain</strong>
-                <span class="mini-card__value" id="domain-length">0</span>
-                <p id="domain-meta">Waiting for input.</p>
-              </article>
-              <article class="mini-card">
-                <strong>TLD</strong>
-                <span class="mini-card__value" id="tld-length">0</span>
-                <p id="tld-meta">Waiting for input.</p>
-              </article>
-            </div>
-          </article>
-
-          <aside class="panel" aria-live="polite">
-            <h3>
-              <span>Validation results</span>
-              <span class="badge" id="overall-status">Live</span>
-            </h3>
-            <div class="status-list">
-              <div class="status-row">
-                <div>
-                  <strong>Native HTML5 <code>&lt;input type="email"&gt;</code></strong>
-                  <p id="native-message">Checking browser constraint validation.</p>
-                </div>
-                <span class="status-pill pending" id="native-status">Pending</span>
-              </div>
-              <div class="status-row">
-                <div>
-                  <strong>Pragmatic production regex</strong>
-                  <p id="regex-message">Checking local-part dots, domain labels, and a sensible alphabetic TLD.</p>
-                </div>
-                <span class="status-pill pending" id="regex-status">Pending</span>
-              </div>
-              <div class="detail-row">
-                <div>
-                  <strong>Why this matters</strong>
-                  <p id="explanation">Use the browser for UX. Use the server for normalization. Use DNS and email confirmation for reality.</p>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
       <section class="section" aria-labelledby="summary-title">
         <div class="section__header">
           <div>
@@ -1023,7 +785,7 @@
                 <span>Spec snippet as commonly quoted</span>
                 <span class="code-dots" aria-hidden="true"><span></span><span></span><span></span></span>
               </div>
-              <pre class="spec-regex"><code>/^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@&lt;a&gt;a-zA-Z0-9&lt;/a&gt;?(?:\.&lt;a&gt;a-zA-Z0-9&lt;/a&gt;?)*$/</code></pre>
+              <pre class="spec-regex"><code>/^&lt;a&gt;\w.!#$%&amp;'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)*$/i</code></pre>
             </div>
             <p style="margin-top: 1rem;">
               Yes, that weird <code>&lt;a&gt;</code> markup artifact is exactly how this snippet gets mangled when copied through HTML. The actual point is simple:
@@ -1215,116 +977,7 @@ EMAIL_RE = re.compile(
 
   <script>
     (function () {
-      // Shared production regex for the sandbox demo.
-      var pragmaticEmailPattern = /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/;
-      var emailInput = document.getElementById('email-sandbox');
-      var chips = Array.prototype.slice.call(document.querySelectorAll('[data-email]'));
       var copyButtons = Array.prototype.slice.call(document.querySelectorAll('.copy-button'));
-
-      var statusEls = {
-        nativeBadge: document.getElementById('native-status'),
-        nativeMessage: document.getElementById('native-message'),
-        regexBadge: document.getElementById('regex-status'),
-        regexMessage: document.getElementById('regex-message'),
-        overall: document.getElementById('overall-status'),
-        explanation: document.getElementById('explanation'),
-        localLength: document.getElementById('local-length'),
-        localMeta: document.getElementById('local-meta'),
-        domainLength: document.getElementById('domain-length'),
-        domainMeta: document.getElementById('domain-meta'),
-        tldLength: document.getElementById('tld-length'),
-        tldMeta: document.getElementById('tld-meta')
-      };
-
-      function setStatus(element, label, state) {
-        element.textContent = label;
-        element.className = 'status-pill ' + state;
-      }
-
-      function countCharacters(value) {
-        var letters = (value.match(/[A-Za-z]/g) || []).length;
-        var digits = (value.match(/[0-9]/g) || []).length;
-        var hyphens = (value.match(/-/g) || []).length;
-        var dots = (value.match(/\./g) || []).length;
-        var specials = Math.max(value.length - letters - digits - hyphens - dots, 0);
-
-        return {
-          length: value.length,
-          summary: value
-            ? 'chars ' + value.length + ' · letters ' + letters + ' · digits ' + digits + ' · hyphens ' + hyphens + ' · dots ' + dots + (specials ? ' · specials ' + specials : '')
-            : 'Missing segment.'
-        };
-      }
-
-      function updateChipState(currentValue) {
-        chips.forEach(function (chip) {
-          chip.classList.toggle('is-active', chip.getAttribute('data-email') === currentValue);
-        });
-      }
-
-      function evaluateEmail() {
-        var value = emailInput.value.trim();
-        var atIndex = value.indexOf('@');
-        var hasSingleAt = atIndex > 0 && atIndex === value.lastIndexOf('@') && atIndex < value.length - 1;
-        var local = hasSingleAt ? value.slice(0, atIndex) : '';
-        var domain = hasSingleAt ? value.slice(atIndex + 1) : '';
-        var lastDot = domain.lastIndexOf('.');
-        var tld = lastDot > -1 ? domain.slice(lastDot + 1) : '';
-        var nativePass = value !== '' && emailInput.checkValidity();
-        var regexPass = pragmaticEmailPattern.test(value);
-        var localStats = countCharacters(local);
-        var domainStats = countCharacters(domain);
-        var tldStats = countCharacters(tld);
-
-        updateChipState(value);
-
-        statusEls.localLength.textContent = String(localStats.length);
-        statusEls.localMeta.textContent = localStats.summary;
-        statusEls.domainLength.textContent = String(domainStats.length);
-        statusEls.domainMeta.textContent = domainStats.summary;
-        statusEls.tldLength.textContent = String(tldStats.length);
-        statusEls.tldMeta.textContent = tld ? tldStats.summary + ' · alpha only ' + (/^[A-Za-z]+$/.test(tld) ? 'yes' : 'no') : 'Missing TLD.';
-
-        if (!value) {
-          setStatus(statusEls.nativeBadge, 'Pending', 'pending');
-          setStatus(statusEls.regexBadge, 'Pending', 'pending');
-          statusEls.nativeMessage.textContent = 'Type an address to see whether the browser accepts it.';
-          statusEls.regexMessage.textContent = 'Type an address to compare it with a pragmatic production regex.';
-          statusEls.overall.textContent = 'Live';
-          statusEls.explanation.textContent = 'Empty input should not be treated as validated. Start typing to compare the checks.';
-          return;
-        }
-
-        if (nativePass) {
-          setStatus(statusEls.nativeBadge, 'Pass', 'pass');
-          statusEls.nativeMessage.textContent = 'The browser accepts this shape as an email address.';
-        } else {
-          setStatus(statusEls.nativeBadge, 'Fail', 'fail');
-          statusEls.nativeMessage.textContent = 'The browser rejects this shape before your app-specific validation runs.';
-        }
-
-        if (regexPass) {
-          setStatus(statusEls.regexBadge, 'Pass', 'pass');
-          statusEls.regexMessage.textContent = 'The pragmatic regex accepts it: sane local part, sane domain labels, sane TLD.';
-        } else {
-          setStatus(statusEls.regexBadge, 'Fail', 'fail');
-          statusEls.regexMessage.textContent = 'The pragmatic regex rejects it: likely bad dot placement, label structure, or TLD shape.';
-        }
-
-        if (nativePass && regexPass) {
-          statusEls.overall.textContent = 'Looks sane';
-          statusEls.explanation.textContent = 'Good candidate for server normalization, DNS checks, and a real confirmation email.';
-        } else if (nativePass && !regexPass) {
-          statusEls.overall.textContent = 'Browser lenient';
-          statusEls.explanation.textContent = 'HTML5 is intentionally forgiving. Your server may still want stricter dot and label rules.';
-        } else if (!nativePass && regexPass) {
-          statusEls.overall.textContent = 'Unexpected split';
-          statusEls.explanation.textContent = 'If this happens, compare browser behavior and business rules carefully before changing your validation rules.';
-        } else {
-          statusEls.overall.textContent = 'Needs attention';
-          statusEls.explanation.textContent = 'Reject the structure, explain the issue clearly, and focus on the actual formatting problem.';
-        }
-      }
 
       function fallbackCopy(text) {
         var helper = document.createElement('textarea');
@@ -1367,22 +1020,11 @@ EMAIL_RE = re.compile(
         }
       }
 
-      chips.forEach(function (chip) {
-        chip.addEventListener('click', function () {
-          emailInput.value = chip.getAttribute('data-email') || '';
-          emailInput.focus();
-          evaluateEmail();
-        });
-      });
-
       copyButtons.forEach(function (button) {
         button.addEventListener('click', function () {
           copySnippet(button);
         });
       });
-
-      emailInput.addEventListener('input', evaluateEmail);
-      evaluateEmail();
     })();
   </script>
 </body>
