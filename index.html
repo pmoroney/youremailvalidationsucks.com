@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>your email validation sucks</title>
+  <title>Your email validation can do better</title>
   <meta
     name="description"
-    content="An opinionated developer reference on modern email validation, new gTLDs, HTML5 constraints, pragmatic regex, DNS checks, and why your ancient TLD regex is hurting real users."
+    content="A practical developer reference on modern email validation, new gTLDs, HTML5 constraints, pragmatic regex, DNS checks, and the difference between syntax checks and real deliverability."
   >
   <style>
     /* Theme tokens */
@@ -757,14 +757,14 @@
       <span class="hero__eyebrow">Developer reference · email validation</span>
       <div class="hero__grid">
         <div class="hero__copy">
-          <h1>your email validation sucks</h1>
+          <h1>Build email validation that works for modern addresses</h1>
           <p>
-            If your signup form still thinks legitimate addresses stop at <code>.com</code>, <code>.net</code>,
-            and the emotional support animal known as <code>.info</code>, congratulations: you shipped a time capsule.
+            If your signup form still expects most legitimate addresses to end in <code>.com</code>, <code>.net</code>,
+            or <code>.info</code>, this guide can help bring it up to date.
           </p>
           <p>
-            This page is the antidote. It covers why new gTLDs are normal, why <code>[a-z]{2,4}</code> was always a trap,
-            where HTML5 helps, where regex stops, and what production-grade validation actually looks like in 2026.
+            It explains why newer gTLDs are normal, why <code>[a-z]{2,4}</code> causes avoidable mistakes,
+            where HTML5 helps, where regex stops, and what practical validation looks like in 2026.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#sandbox">Try the sandbox</a>
@@ -775,17 +775,17 @@
           <div class="stat">
             <span class="badge">Reality</span>
             <span class="stat__value">1,200+</span>
-            <span class="muted">generic TLDs are in active use. Your three-letter worldview is retired.</span>
+            <span class="muted">generic TLDs are in active use, so validators should not assume very short endings.</span>
           </div>
           <div class="stat">
             <span class="badge">DNS fact</span>
             <span class="stat__value">63</span>
-            <span class="muted">octets is the RFC 1035 label limit. Not 4. Not 6. Sixty-three.</span>
+            <span class="muted">octets is the RFC 1035 label limit, which is a much better ceiling than older hard-coded caps.</span>
           </div>
           <div class="stat">
             <span class="badge">Production truth</span>
             <span class="stat__value">4 layers</span>
-            <span class="muted">Regex is only layer 1. Deliverability is what happens after the regex ego trip.</span>
+            <span class="muted">Regex is only layer 1. Real deliverability is established later in the flow.</span>
           </div>
         </aside>
       </div>
@@ -796,7 +796,7 @@
         <div class="section__header">
           <div>
             <span class="section__eyebrow">Interactive Email Sandbox</span>
-            <h2 id="sandbox-title">Paste an address. Watch old assumptions embarrass themselves.</h2>
+            <h2 id="sandbox-title">Paste an address and compare common validation approaches.</h2>
           </div>
           <p>
             Native HTML5 validation is intentionally lightweight. The pragmatic regex below is stricter about obvious mistakes.
@@ -885,28 +885,28 @@
         <div class="section__header">
           <div>
             <span class="section__eyebrow">Common failure modes</span>
-            <h2 id="summary-title">The bugs are old. The user pain is current.</h2>
+            <h2 id="summary-title">Common validation habits can still block legitimate users.</h2>
           </div>
           <p>
-            The internet did not freeze in 1999 just because your legacy validator did.
+            Many validators were written for an older internet and simply need a more current rule set.
           </p>
         </div>
 
         <div class="summary-grid">
           <article class="summary-card">
-            <h3>The mythical three-letter TLD</h3>
+            <h3>Outdated TLD length assumptions</h3>
             <p>
-              <code>[a-z]{2,4}</code> treats <code>.photography</code> like a syntax error. It is not. Your regex is.
+              <code>[a-z]{2,4}</code> treats <code>.photography</code> like a syntax error, even though it is a perfectly valid modern TLD.
             </p>
           </article>
           <article class="summary-card">
-            <h3>Hostility toward power users</h3>
+            <h3>Blocking common mailbox workflows</h3>
             <p>
               Rejecting <code>+</code>, <code>-</code>, or dots in the local part breaks aliases, filters, and security-minded users who compartmentalize mail.
             </p>
           </article>
           <article class="summary-card">
-            <h3>Regex cosplay as deliverability</h3>
+            <h3>Syntax checks are not deliverability checks</h3>
             <p>
               Even a perfect parser cannot prove the mailbox exists, accepts mail, or belongs to the person typing it.
             </p>
@@ -915,23 +915,23 @@
 
         <div class="callout-grid" style="margin-top: 1rem;">
           <article class="callout callout--sins">
-            <span class="badge">Common Sins</span>
+            <span class="badge">Common pitfalls</span>
             <ul>
-              <li>Hard-coding <code>.com|.net|.org</code> like ICANN stopped taking calls in 1998.</li>
-              <li>Blocking <code>user+tag@domain.com</code> because somebody thought <code>+</code> looked suspicious.</li>
-              <li>Using a giant “RFC compliant” regex that nobody can review without summoning a hex editor and regret.</li>
+              <li>Hard-coding <code>.com|.net|.org</code> instead of allowing the broader range of TLDs now in use.</li>
+              <li>Blocking <code>user+tag@domain.com</code> even though plus-addressing is a normal and useful workflow.</li>
+              <li>Using a giant “RFC compliant” regex that is difficult to review, maintain, or reason about safely.</li>
             </ul>
           </article>
           <article class="callout callout--trivia">
-            <span class="badge">RFC Trivia</span>
+            <span class="badge">Helpful standards notes</span>
             <ul>
               <li>RFC 1035 allows DNS labels up to 63 octets.</li>
               <li>RFC 5233 formalizes subaddressing like <code>user+tag@domain.com</code>.</li>
-              <li>RFC 6530/6531 extend email beyond ASCII, because the planet contains more than English keyboards.</li>
+              <li>RFC 6530/6531 extend email beyond ASCII to support internationalized addresses.</li>
             </ul>
           </article>
           <article class="callout callout--practices">
-            <span class="badge">Best Practices</span>
+            <span class="badge">Helpful practices</span>
             <ul>
               <li>Use HTML5 validation for immediate UX feedback, not canonical truth.</li>
               <li>Normalize safely on the server: trim, lowercase the domain only, and convert IDNs to Punycode.</li>
@@ -944,11 +944,11 @@
       <section class="section" id="history" aria-labelledby="history-title">
         <div class="section__header">
           <div>
-            <span class="section__eyebrow">A Brief History of Domain Chaos</span>
-            <h2 id="history-title">Why the old regex died, but nobody told enterprise forms.</h2>
+            <span class="section__eyebrow">A brief history of gTLD expansion</span>
+            <h2 id="history-title">Why older regex assumptions no longer match the modern domain space.</h2>
           </div>
           <p>
-            New gTLDs were not a fad. They were a policy shift, a DNS rollout, and a very public stress test for lazy validators.
+            New gTLDs were not a fad. They were a policy shift, a DNS rollout, and a clear signal that validators needed to evolve.
           </p>
         </div>
 
@@ -967,33 +967,33 @@
               </div>
             </div>
             <div class="quote-box" style="margin-top: 1rem;">
-              <strong>Translation:</strong>
+              <strong>Practical takeaway:</strong>
               <p>
-                If your validation rule still assumes the world ends at <code>.museum</code>, your UX is doing archaeology instead of engineering.
+                If your validation rule still assumes the domain space ends around <code>.museum</code>, it is probably time for a refresh.
               </p>
             </div>
           </article>
 
           <article>
-            <h3>The infamous <code>[a-z]{2,4}</code> bug</h3>
+            <h3>The familiar <code>[a-z]{2,4}</code> bug</h3>
             <p>
-              Developers copied TLD-length caps from old blog posts and fossilized them into validation logic.
+              Developers copied TLD-length caps from old blog posts and baked them into validation logic.
               That assumption was always brittle, and it became actively wrong once long branded and descriptive TLDs arrived.
             </p>
             <p>
               RFC 1035 permits DNS labels up to <strong>63 octets</strong>. Real modern TLDs like
               <code>.cancerresearch</code> (14 characters) and <code>.northwesternmutual</code> (19 characters)
-              blow straight through the old <code>{2,4}</code> fantasy.
+              are both far longer than the old <code>{2,4}</code> assumption.
             </p>
             <p>
-              The same era of bad regex also produced validators that rejected perfectly normal plus-addressing such as
+              The same era also produced validators that rejected perfectly normal plus-addressing such as
               <code>user+tag@domain.com</code>, and sometimes even disallowed dots or hyphens in the local part.
-              That breaks aliases, filtering workflows, breach tracing, and anyone who treats their inbox like a tool instead of a shrine.
+              That breaks aliases, filtering workflows, and mailbox organization patterns that many users rely on every day.
             </p>
             <p>
               Then there are IDNs and EAI: internationalized domains can appear as Punycode such as <code>xn--bcher-kva.example</code>,
               and RFC 6530 / RFC 6531 allow non-ASCII email addresses in systems that support Email Address Internationalization.
-              ASCII-only regex is still common. ASCII-only reality is not.
+              ASCII-only regex is still common, but it does not reflect the full range of real-world email usage.
             </p>
           </article>
         </div>
@@ -1003,11 +1003,11 @@
         <div class="section__header">
           <div>
             <span class="section__eyebrow">Regex &amp; standards</span>
-            <h2 id="regex-title">Use sane patterns. Not ceremonial ones.</h2>
+            <h2 id="regex-title">Use practical patterns that are easy to review and maintain.</h2>
           </div>
           <p>
             The platform already gives you a lightweight browser validator. Production systems usually want a pragmatic regex on top,
-            not a 6,000-character performance hazard pretending to be wisdom.
+            not an oversized pattern that is difficult to maintain and reason about.
           </p>
         </div>
 
@@ -1030,10 +1030,10 @@
               browsers intentionally use a much smaller, more maintainable rule than full RFC 5322 because full RFC 5322 is not a humane UX strategy.
             </p>
             <div class="warning-box" style="margin-top: 1rem;">
-              <strong>Do not ship the mythical “official RFC 5322 regex.”</strong>
+              <strong>Be careful with the mythical “official RFC 5322 regex.”</strong>
               <p>
-                The monster pattern floating around the internet is unmaintainable, review-hostile, and a lovely way to invite catastrophic backtracking
-                and ReDoS risk into your signup form. If the regex needs its own pager rotation, you already lost.
+                The oversized pattern floating around the internet is hard to review, hard to maintain, and can introduce catastrophic backtracking
+                and ReDoS risk into your signup form. Smaller, reviewable rules are usually the safer choice.
               </p>
             </div>
           </article>
@@ -1049,7 +1049,7 @@
             <div class="quote-box" style="margin-top: 1rem;">
               <strong>That last bullet matters.</strong>
               <p>
-                “At least 2 alphabetic characters” is a product rule. “At most 4 because reasons” is just superstition with commit access.
+                “At least 2 alphabetic characters” is a clear product rule. “At most 4” is usually a leftover assumption that no longer fits the current domain landscape.
               </p>
             </div>
           </article>
@@ -1133,17 +1133,17 @@ EMAIL_RE = re.compile(
         <div class="section__header">
           <div>
             <span class="section__eyebrow">The 4-layer hierarchy</span>
-            <h2 id="layers-title">Regex is layer 1. Delivery is layer 4.</h2>
+            <h2 id="layers-title">Regex is only the first layer; deliverability comes later.</h2>
           </div>
           <p>
-            Real validation pipelines stack cheap checks first and expensive truth later. That order is not optional.
+            Effective validation pipelines stack inexpensive checks first and stronger confirmation later.
           </p>
         </div>
 
         <div class="layers">
           <article class="layer">
             <span class="layer__number">1</span>
-            <h3>Structural sanity (client / regex)</h3>
+            <h3>Structural checks (client / regex)</h3>
             <p>
               Use HTML5 <code>type="email"</code> and a pragmatic regex to catch missing <code>@</code>, broken domains, and obvious typos.
               This is UX polish and typo-catching, not proof of existence.
@@ -1176,11 +1176,11 @@ EMAIL_RE = re.compile(
         </div>
 
         <div class="warning-box" style="margin-top: 1rem;">
-          <strong>Do not live-ping remote mail servers during signup.</strong>
+          <strong>Avoid live-pinging remote mail servers during signup.</strong>
           <p>
-            SMTP <code>VRFY</code> / <code>RCPT TO</code> probing sounds clever right up until greylisting and tarpits hand you temporary
-            <code>450</code> / <code>451</code> errors, catch-all domains accept literally everything, and Gmail / Microsoft / Yahoo decide your IP looks like a harvesting bot.
-            Getting your sender reputation torched for a premature “validation” check is a spectacularly bad trade.
+            SMTP <code>VRFY</code> / <code>RCPT TO</code> probing may sound appealing, but greylisting and tarpits can return temporary
+            <code>450</code> / <code>451</code> errors, catch-all domains may accept everything, and large providers may treat your IP like a harvesting bot.
+            It is usually a poor trade compared with confirmation email and normal deliverability monitoring.
           </p>
         </div>
       </section>
@@ -1190,20 +1190,20 @@ EMAIL_RE = re.compile(
       <div class="section__header">
         <div>
           <span class="section__eyebrow">Ship better forms</span>
-          <h2 id="footer-title">Be strict about nonsense. Not about legitimate users.</h2>
+          <h2 id="footer-title">Be clear about invalid input without blocking legitimate users.</h2>
         </div>
         <p>
-          The ideal validator rejects malformed junk, accepts real modern addresses, and lets confirmation email settle the final argument.
+          The ideal validator rejects malformed input, accepts real modern addresses, and lets confirmation email answer the final deliverability question.
         </p>
       </div>
       <div class="footer-grid">
         <article class="summary-card">
-          <h3>Accept reality</h3>
+          <h3>Support modern addresses</h3>
           <p>New gTLDs, plus-addressing, subdomains, IDNs, and EAI are normal internet behavior now.</p>
         </article>
         <article class="summary-card">
-          <h3>Prefer maintainability</h3>
-          <p>If nobody on your team can explain the regex during review, it is not a badge of honor. It is a liability.</p>
+          <h3>Keep rules maintainable</h3>
+          <p>If nobody on your team can explain the regex during review, it is probably too complex to be the right long-term choice.</p>
         </article>
         <article class="summary-card">
           <h3>Confirm with email</h3>
